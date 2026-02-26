@@ -1,0 +1,78 @@
+type Query {
+    feed(page: Int, size: Int): [Post]
+    post(id: ID!): Post
+    me: User
+    user(id: ID!): User
+    villageGroups: [VillageGroup]
+    villageGroup(id: ID!): VillageGroup
+    updates: [Update!]!
+}
+
+type Mutation {
+    loginWithPhone(firebaseToken: String!): AuthResponse
+    login(username: String!, password: String!): AuthResponse
+    register(username: String!, email: String!, password: String!): User
+    createPost(content: String!, imageUrl: String, villageId: ID!): Post
+    updatePost(id: ID!, content: String!): Post
+    deletePost(id: ID!): Boolean
+    likePost(postId: ID!): Post
+    addComment(postId: ID!, content: String!): Comment
+    completeProfile(name: String!, email: String, address: String!, villageId: ID!): User
+    updateProfile(username: String, email: String, address: String, villageId: ID!, profileImageUrl: String): User
+}
+
+type AuthResponse {
+    token: String!
+    user: User!
+    isProfileComplete: Boolean!
+}
+
+type User {
+    id: ID!
+    phoneNumber: String
+    username: String
+    email: String
+    address: String
+    role: Role!
+    villageGroup: VillageGroup
+    isProfileComplete: Boolean!
+    createdAt: String
+    lastLogin: String
+    profileImageUrl: String
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+type Post {
+    id: ID!
+    content: String!
+    imageUrl: String
+    author: User!
+    villageGroup: VillageGroup!
+    likesCount: Int!
+    comments: [Comment]
+    createdAt: String!
+}
+
+type Comment {
+    id: ID!
+    content: String!
+    author: User!
+    createdAt: String!
+}
+
+type VillageGroup {
+    id: ID!
+    name: String!
+    description: String
+    members: [User]
+}
+
+type Update {
+    id: ID!
+    title: String!
+    message: String!
+}

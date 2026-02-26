@@ -1,0 +1,89 @@
+query GetFeed($page: Int, $size: Int) {
+  feed(page: $page, size: $size) {
+    id
+    content
+    imageUrl
+    createdAt
+    likesCount
+    author {
+      username
+    }
+    villageGroup {
+      name
+    }
+  }
+}
+
+mutation LoginWithPhone($firebaseToken: String!) {
+  loginWithPhone(firebaseToken: $firebaseToken) {
+    token
+    isProfileComplete
+    user {
+      id
+      phoneNumber
+    }
+  }
+}
+
+mutation CompleteProfile($name: String!, $email: String, $address: String!, $villageId: ID!) {
+  completeProfile(name: $name, email: $email, address: $address, villageId: $villageId) {
+    id
+    isProfileComplete
+  }
+}
+
+query GetMe {
+  me {
+    id
+    username
+    email
+    role
+    phoneNumber
+    profileImageUrl
+    address
+    villageGroup {
+      id
+      name
+      description
+    }
+    isProfileComplete
+  }
+}
+
+mutation UpdateProfile($username: String, $email: String, $address: String, $villageId: ID!, $profileImageUrl: String) {
+  updateProfile(username: $username, email: $email, address: $address, villageId: $villageId, profileImageUrl: $profileImageUrl) {
+    id
+    username
+    email
+    address
+    villageGroup {
+      id
+      name
+    }
+    isProfileComplete
+  }
+}
+
+mutation CreatePost($content: String!, $imageUrl: String, $villageId: ID!) {
+  createPost(content: $content, imageUrl: $imageUrl, villageId: $villageId) {
+    id
+    content
+    createdAt
+    author {
+      id
+      username
+    }
+    villageGroup {
+      id
+      name
+    }
+  }
+}
+
+query GetUpdates {
+  updates {
+    id
+    title
+    message
+  }
+}

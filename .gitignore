@@ -1,0 +1,37 @@
+# Gradle
+.gradle/
+.gradle-user-home/
+.home/
+.kotlin/
+build/
+*/build/
+*/*/build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Android
+capture/
+**/google-services.json
+local.properties
+
+# iOS
+iosApp/iosApp.xcworkspace/
+iosApp.xcodeproj/project.xcworkspace/
+iosApp.xcodeproj/xcuserdata/
+DerivedData/
+.DS_Store
+
+# Kotlin Multiplatform
+.kotlin/
+shared/build/
+.artifacts/
+
+# System
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db
